@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 // Define the TypeScript Interface
 export interface IUser extends mongoose.Document {
   firebaseUid: string;
+  name?: string;
   businessCategory?: string;
   region?: string;
   preferredLanguage: string;
@@ -13,6 +14,7 @@ export interface IUser extends mongoose.Document {
 // Define the Mongoose Schema
 const UserProfileSchema = new mongoose.Schema({
   firebaseUid: { type: String, required: true, unique: true },
+  name: { type: String },
   businessCategory: { type: String }, 
   region: { type: String },           
   preferredLanguage: { type: String, default: 'English' },

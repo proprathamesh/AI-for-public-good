@@ -9,6 +9,9 @@ import path from 'path';
 import onboarding from './routes/Onboarding';
 import inventoryRoutes from './routes/InventoryRoutes';
 import AIroutes from './routes/AiRoutes';
+import schemeRoutes from './routes/SchemeRoutes';
+import profile from './routes/ProfileRoutes';
+import transaction from './routes/TransactionRoutes';
 
 dotenv.config();
 
@@ -20,6 +23,9 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use('/api/users', onboarding);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api', AIroutes);
+app.use('/api/schemes', schemeRoutes);
+app.use('/api/profile', profile);
+app.use('/api/transaction', transaction);
 // ---------------------------------------------------------
 // 1. Firebase Admin Initialization
 // ---------------------------------------------------------

@@ -9,43 +9,41 @@ import { useRouter } from 'expo-router';
 
 export default function OnboardingScreen(): React.ReactElement {
   const router = useRouter();
+  // We now have 4 steps instead of 3
   const [step, setStep] = useState<number>(1);
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
   // Form Data
+  const [name, setName] = useState<string>(''); // NEW: Name state
   const [businessCategory, setBusinessCategory] = useState<string>('');
   const [region, setRegion] = useState<string>('');
   const [language, setLanguage] = useState<string>('English');
 
   const handleNext = async () => {
-    if (step < 3) {
+    if (step < 4) { // Updated to 4 steps
       setStep(step + 1);
     } else {
       try {
-        // 1. Get the secure Firebase token for the logged-in user
         const token = await auth.currentUser?.getIdToken();
         if (!token) throw new Error("No user is logged in.");
 
-        // 2. Send the data to your Node server 
         const apiUrl = process.env.EXPO_PUBLIC_APP_URL;
         const response = await fetch(`${apiUrl}/api/users/onboarding`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Secure the request
+            'Authorization': `Bearer ${token}` 
           },
-          body: JSON.stringify({ businessCategory, region, language })
+          // NEW: Include 'name' in the payload sent to the backend
+          body: JSON.stringify({ name, businessCategory, region, language }) 
         });
 
         if (!response.ok) {
           const errorData = await response.json();
           console.error("❌ Backend Error Details:", errorData);
-          
-          // Throw the specific backend error message if it exists, otherwise fallback
           throw new Error(errorData.error || "Failed to save profile");
         }
 
-        // 3. Move to dashboard only on success
         console.log("Onboarding data saved to MongoDB!");
         router.replace('/pages/Dashboard');
 
@@ -64,15 +62,35 @@ export default function OnboardingScreen(): React.ReactElement {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
         
-        {/* Progress Indicator */}
+        {/* Progress Indicator - Now with 4 dots */}
         <View style={styles.progressContainer}>
             <View style={[styles.progressDot, step >= 1 && styles.progressDotActive]} />
             <View style={[styles.progressDot, step >= 2 && styles.progressDotActive]} />
             <View style={[styles.progressDot, step >= 3 && styles.progressDotActive]} />
+            <View style={[styles.progressDot, step >= 4 && styles.progressDotActive]} />
         </View>
 
         <View style={styles.card}>
+          
+          {/* STEP 1: Name */}
           {step === 1 && (
+            <View>
+              <Text style={styles.headerTitle}>What's your name?</Text>
+              <Text style={styles.headerSubtitle}>Let's personalize your experience.</Text>
+              <TextInput
+                style={[styles.input, focusedInput === 'name' && styles.inputFocused]}
+                placeholder="e.g., Rahul Sharma"
+                placeholderTextColor="#9CA3AF"
+                value={name}
+                onChangeText={setName}
+                onFocus={() => setFocusedInput('name')}
+                onBlur={() => setFocusedInput(null)}
+              />
+            </View>
+          )}
+
+          {/* STEP 2: Category */}
+          {step === 2 && (
             <View>
               <Text style={styles.headerTitle}>What do you sell?</Text>
               <Text style={styles.headerSubtitle}>This helps the AI categorize your inventory automatically.</Text>
@@ -88,7 +106,8 @@ export default function OnboardingScreen(): React.ReactElement {
             </View>
           )}
 
-          {step === 2 && (
+          {/* STEP 3: Region */}
+          {step === 3 && (
             <View>
               <Text style={styles.headerTitle}>Where are you located?</Text>
               <Text style={styles.headerSubtitle}>We use this to find relevant state-level government schemes.</Text>
@@ -104,7 +123,8 @@ export default function OnboardingScreen(): React.ReactElement {
             </View>
           )}
 
-          {step === 3 && (
+          {/* STEP 4: Language */}
+          {step === 4 && (
             <View>
               <Text style={styles.headerTitle}>Preferred Language</Text>
               <Text style={styles.headerSubtitle}>Choose how the AI should communicate with you.</Text>
@@ -133,7 +153,7 @@ export default function OnboardingScreen(): React.ReactElement {
             )}
             
             <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
-              <Text style={styles.nextButtonText}>{step === 3 ? 'Complete Setup' : 'Next'}</Text>
+              <Text style={styles.nextButtonText}>{step === 4 ? 'Complete Setup' : 'Next'}</Text>
             </TouchableOpacity>
           </View>
         </View>

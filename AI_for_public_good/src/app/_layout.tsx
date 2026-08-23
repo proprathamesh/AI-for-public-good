@@ -11,6 +11,7 @@ export default function RootLayout(): React.ReactElement {
       {/* The protected dashboard route */}
       <Stack.Screen name="dashboard" />
       <Stack.Screen name="pages/onboarding" />
+      <Stack.Screen name="pages/schemes" />
     </Stack>
   );
 }

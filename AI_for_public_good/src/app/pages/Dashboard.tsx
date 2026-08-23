@@ -2,20 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, StatusBar, Dimensions, ActivityIndicator, RefreshControl } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { auth } from '../../../firebase/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { InventoryItem } from '../../types/types';
 
 const { width } = Dimensions.get('window');
-
-interface InventoryItem {
-  _id: string;
-  itemName: string;
-  category: string;
-  description?: string;
-  stockCount: number;
-  unitPrice: number;
-  createdAt: string;
-}
 
 export default function DashboardScreen() {
   const router = useRouter();
@@ -89,8 +79,8 @@ export default function DashboardScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" />
-      <ScrollView 
-        contentContainerStyle={styles.scrollContainer} 
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#4F46E5']} />}
       >
@@ -104,7 +94,10 @@ export default function DashboardScreen() {
               <Text style={styles.businessName}>{profile?.businessCategory || 'My Business'}</Text>
             )}
           </View>
-          <TouchableOpacity style={styles.profileBtn}>
+          <TouchableOpacity
+            style={styles.profileBtn}
+            onPress={() => router.push('/pages/Profile')}
+          >
             <Ionicons name="person-circle" size={44} color="#4F46E5" />
           </TouchableOpacity>
         </View>
@@ -151,17 +144,17 @@ export default function DashboardScreen() {
             <View style={[styles.iconWrapper, { backgroundColor: '#EEF2FF' }]}>
               <Ionicons name="scan" size={28} color="#4F46E5" />
             </View>
-            <Text style={styles.actionText}>Scan Shipment</Text>
+            <Text style={styles.actionText}>Scan(add/sell) Shipment</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={[styles.iconWrapper, { backgroundColor: '#ECFDF5' }]}>
-              <Ionicons name="receipt-outline" size={28} color="#10B981" />
+          <TouchableOpacity style={styles.actionButton} onPress={() => router.push('/pages/Inventory')}>
+            <View style={[styles.iconWrapper, { backgroundColor: '#EEF2FF' }]}>
+              <Ionicons name="cube-outline" size={28} color="#4F46E5" />
             </View>
-            <Text style={styles.actionText}>New Invoice</Text>
+            <Text style={styles.actionText}>View Inventory</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={() => router.push('/pages/Schemes')}>
             <View style={[styles.iconWrapper, { backgroundColor: '#FEF2F2' }]}>
               <Ionicons name="document-text-outline" size={28} color="#EF4444" />
             </View>
