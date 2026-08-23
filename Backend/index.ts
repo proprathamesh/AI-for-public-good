@@ -43,7 +43,16 @@ app.use('/api/transaction', transaction);
 // 1. Firebase Admin Initialization
 // ---------------------------------------------------------
 // Using require specifically for the JSON file is standard in TS
-const serviceAccount = require(path.join(__dirname, './firebaseServiceAccount.json'));
+let serviceAccount;
+
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  // Production (Render): Parse the JSON string from the environment variable
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+  // Local Development: Use the physical file
+  serviceAccount = require('./firebaseServiceAccount.json');
+}
+// serviceAccount = require(path.join(__dirname, './firebaseServiceAccount.json'));
 
 initializeApp({
   credential: cert(serviceAccount)

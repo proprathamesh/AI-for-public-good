@@ -9119,3 +9119,34 @@
 {"_e":"metro:client_log","_t":1787488335806,"level":"warn","data":["[Layout children]: No route named \"pages/schemes\" exists in nested children:","[\"explore\", \"index\", \"pages/Camera\", \"pages/Dashboard\", \"pages/Inventory\", \"pages/Login\", \"pages/Onboarding\", \"pages/Profile\", \"pages/Schemes\"]"]}
 {"_e":"metro:client_log","_t":1787488356330,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
 {"_e":"metro:client_log","_t":1787488356540,"level":"warn","data":["Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md"]}
+{"_e":"metro:bundling:started","_t":1787489738748,"id":"6u","platform":"web","environment":null,"entry":"node_modules\\expo-router\\entry.js"}
+{"_e":"metro:bundling:progress","_t":1787489738750,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:started","_t":1787489738752,"id":"6v","platform":"web","environment":"node","entry":"node_modules\\expo\\node_modules\\@expo\\cli\\node_modules\\@expo\\router-server\\node\\render.js"}
+{"_e":"metro:bundling:progress","_t":1787489738752,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489738752,"id":"6v","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787489738999,"id":"6v","total":1,"ms":246.0026}
+{"_e":"metro:bundling:progress","_t":1787489738999,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489739937,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489740043,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489740144,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489740748,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741027,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741128,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741228,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741328,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741429,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741529,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741629,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741729,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1787489741848,"id":"6u","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787489741908,"id":"6u","total":1,"ms":3158.5625}
+{"_e":"metro:bundling:started","_t":1787489741995,"id":"6w","platform":"web","environment":null,"entry":"node_modules\\expo-router\\entry.js"}
+{"_e":"metro:bundling:progress","_t":1787489741995,"id":"6w","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1787489742082,"id":"6w","total":1,"ms":86.9493}
+{"_e":"metro:client_log","_t":1787489742482,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1787489742483,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1787489742591,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1787489742642,"level":"warn","data":["[Layout children]: No route named \"login\" exists in nested children:","[\"explore\", \"index\", \"pages/Camera\", \"pages/Dashboard\", \"pages/Inventory\", \"pages/Login\", \"pages/Onboarding\", \"pages/Profile\", \"pages/Schemes\"]"]}
+{"_e":"metro:client_log","_t":1787489742643,"level":"warn","data":["[Layout children]: No route named \"dashboard\" exists in nested children:","[\"explore\", \"index\", \"pages/Camera\", \"pages/Dashboard\", \"pages/Inventory\", \"pages/Login\", \"pages/Onboarding\", \"pages/Profile\", \"pages/Schemes\"]"]}
+{"_e":"metro:client_log","_t":1787489742643,"level":"warn","data":["[Layout children]: No route named \"pages/onboarding\" exists in nested children:","[\"explore\", \"index\", \"pages/Camera\", \"pages/Dashboard\", \"pages/Inventory\", \"pages/Login\", \"pages/Onboarding\", \"pages/Profile\", \"pages/Schemes\"]"]}
+{"_e":"metro:client_log","_t":1787489742643,"level":"warn","data":["[Layout children]: No route named \"pages/schemes\" exists in nested children:","[\"explore\", \"index\", \"pages/Camera\", \"pages/Dashboard\", \"pages/Inventory\", \"pages/Login\", \"pages/Onboarding\", \"pages/Profile\", \"pages/Schemes\"]"]}
