@@ -16,16 +16,20 @@ import transaction from './routes/TransactionRoutes';
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: [
-    'https://ai-for-public-good-frontend.vercel.app', // Your exact live Vercel frontend URL
-    'https://ai-for-public-good-backend.vercel.app', // Your exact live Vercel frontend URL
-    'http://localhost:8081', // Keep localhost just in case you test locally
-    'http://localhost:3000'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use((req, res, next) => {
+  // Allow your specific frontend (or '*' for any frontend)
+  res.header('Access-Control-Allow-Origin', 'https://ai-for-public-good-frontend.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // If it's a preflight OPTIONS request, immediately send a 200 OK and stop!
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
