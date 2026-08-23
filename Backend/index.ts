@@ -19,6 +19,7 @@ const app = express();
 app.use(cors({
   origin: [
     'https://ai-for-public-good-frontend.vercel.app', // Your exact live Vercel frontend URL
+    'https://ai-for-public-good-backend.vercel.app', // Your exact live Vercel frontend URL
     'http://localhost:8081', // Keep localhost just in case you test locally
     'http://localhost:3000'
   ],
