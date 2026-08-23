@@ -16,7 +16,15 @@ import transaction from './routes/TransactionRoutes';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://ai-for-public-good-frontend.vercel.app', // Your exact live Vercel frontend URL
+    'http://localhost:8081', // Keep localhost just in case you test locally
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
@@ -44,29 +52,6 @@ declare global {
     }
   }
 }
-
-// Middleware to protect routes
-const authenticateToken = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    res.status(401).json({ error: 'Unauthorized: No token provided' });
-    return;
-  }
-
-  const idToken = authHeader.split('Bearer ')[1];
-  if (!idToken) {
-    res.status(401).json({ error: 'Unauthorized: Malformed token' });
-    return;
-  }
-  try {
-    const decodedToken = await getAuth().verifyIdToken(idToken);
-    req.user = decodedToken;
-    next();
-  } catch (error) {
-    res.status(401).json({ error: 'Unauthorized: Invalid token' });
-  }
-};
 
 // ---------------------------------------------------------
 // 2. MongoDB Connection & Schema
